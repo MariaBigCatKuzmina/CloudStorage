@@ -1,12 +1,9 @@
 package ru.kuzmina.cloud.handlers;
 
-
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-
 import lombok.extern.slf4j.Slf4j;
 import ru.kuzmina.cloud.model.*;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -21,6 +18,7 @@ public class FileHandler extends SimpleChannelInboundHandler<AbstractMessage> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         ctx.writeAndFlush(new ListMessage(serverRoot));
+        ctx.writeAndFlush(new ListMessagePaths(serverRoot));
     }
 
     @Override
@@ -29,7 +27,14 @@ public class FileHandler extends SimpleChannelInboundHandler<AbstractMessage> {
         switch (msg.getMessageType()) {
             case FILE -> {
                 FileMessage fileMessage = (FileMessage) msg;
-                Files.write(serverRoot.resolve(fileMessage.getName()), fileMessage.getBytes());
+                String filePath = fileMessage.getFilePath();
+                log.info("File path: {}", fileMessage.getFilePath());
+                Path copyRoot = serverRoot;
+                if (filePath != null){
+                    copyRoot = serverRoot.resolve(filePath);
+                    Files.createDirectory(copyRoot);
+                }
+                Files.write(copyRoot.resolve(fileMessage.getName()), fileMessage.getBytes());
                 ctx.writeAndFlush(new ListMessage(serverRoot));
             }
             case DROP -> {
