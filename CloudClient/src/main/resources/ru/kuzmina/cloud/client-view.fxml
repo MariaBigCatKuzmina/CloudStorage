@@ -4,48 +4,49 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kuzmina.cloud.controllers.CloudClientController">
    <center>
-      <SplitPane dividerPositions="0.48494983277591974" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <ListView fx:id="clientFilesList" layoutX="54.0" layoutY="77.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <ListView fx:id="serverFileList" layoutX="69.0" layoutY="75.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
+       <SplitPane dividerPositions="0.48494983277591974" prefHeight="160.0" prefWidth="200.0"
+                  BorderPane.alignment="CENTER">
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <ListView fx:id="clientFilesList" layoutX="54.0" layoutY="77.0" onMouseClicked="#onClientMouseClicked"
+                         prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                         AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+           </AnchorPane>
+           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <ListView fx:id="serverFileList" layoutX="69.0" layoutY="75.0" onMouseClicked="#onServerMouseClicked"
+                         prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                         AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+           </AnchorPane>
+       </SplitPane>
    </center>
    <bottom>
-      <Pane prefHeight="27.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <GridPane alignment="BASELINE_CENTER" layoutX="1.0" prefHeight="27.0" prefWidth="600.0">
+       <Pane prefHeight="27.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+           <BorderPane.margin>
+               <Insets bottom="5.0" top="5.0"/>
+           </BorderPane.margin>
+           <GridPane alignment="BASELINE_CENTER" layoutX="1.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
+                     prefHeight="27.0" prefWidth="600.0">
                <columnConstraints>
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0"/>
+                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0"/>
+                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0"/>
+                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0"/>
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                </rowConstraints>
-               <children>
-                  <Button fx:id="move" layoutX="113.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" text="Переместить" textAlignment="CENTER" GridPane.columnIndex="1" />
-                  <Button fx:id="copy" layoutX="9.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" text="Копировать" textAlignment="CENTER" GridPane.valignment="CENTER" />
-                  <Button fx:id="delete" layoutX="344.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" text="Удалить" textAlignment="CENTER" GridPane.columnIndex="3" />
-                  <Button fx:id="mkdir" layoutX="227.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" text="Каталог" textAlignment="CENTER" GridPane.columnIndex="2" />
-               </children>
-            </GridPane>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="5.0" top="5.0" />
-         </BorderPane.margin>
-      </Pane>
+               <Button fx:id="move" layoutX="113.0" mnemonicParsing="false" onAction="#moveClicked"
+                       prefHeight="27.0" prefWidth="100.0" text="Переместить" textAlignment="CENTER"
+                       GridPane.columnIndex="1"/>
+               <Button fx:id="copy" layoutX="9.0" mnemonicParsing="false" onAction="#copyClicked" prefHeight="27.0"
+                       prefWidth="100.0" text="Копировать" textAlignment="CENTER" GridPane.valignment="CENTER"/>
+               <Button fx:id="delete" layoutX="344.0" mnemonicParsing="false" onAction="#dropClicked"
+                       prefHeight="27.0" prefWidth="100.0" text="Удалить" textAlignment="CENTER"
+                       GridPane.columnIndex="3"/>
+               <Button fx:id="mkdir" layoutX="227.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0"
+                       text="Каталог" textAlignment="CENTER" GridPane.columnIndex="2"/>
+           </GridPane>
+       </Pane>
    </bottom>
 </BorderPane>
