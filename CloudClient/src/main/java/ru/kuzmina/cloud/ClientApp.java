@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ru.kuzmina.cloud.controllers.CloudClientController;
 import ru.kuzmina.cloud.network.Net;
 
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class ClientApp extends Application {
     public void stop() throws Exception {
         super.stop();
         Net.getINSTANCE().closeConnection();
+
     }
 
 }

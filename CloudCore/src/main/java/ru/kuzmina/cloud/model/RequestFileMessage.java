@@ -3,8 +3,8 @@ package ru.kuzmina.cloud.model;
 public class RequestFileMessage extends AbstractMessage{
     private final String file;
 
-    public RequestFileMessage(String file) {
-        this.file = file;
+    public RequestFileMessage(FileData file) {
+        this.file = file.toString();
     }
 
     @Override

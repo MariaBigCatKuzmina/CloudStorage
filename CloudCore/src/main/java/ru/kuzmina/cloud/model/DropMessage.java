@@ -1,13 +1,17 @@
 package ru.kuzmina.cloud.model;
 
-import java.nio.file.Path;
-
 public class DropMessage extends AbstractMessage{
 
+    private final String fileName;
     private final String file;
 
-    public DropMessage(Path filePath) {
-        this.file = filePath.getFileName().toString();
+    public DropMessage(FileData fileName) {
+        this.fileName = fileName.getFileName();
+        this.file = fileName.toString();
+    }
+
+    public String getFileName() {
+        return fileName;
     }
 
     public String getFile() {
