@@ -5,7 +5,8 @@ public enum MessageType {
     FILE("file"),
     DROP("drop"),
     REQUEST_FILE("request_file"),
-    LIST_PATHS("list_paths");
+    LIST_PATHS("list_paths"),
+    FILE_BY_PATH("file_by_path");
 
     private final String name;
 

@@ -7,92 +7,76 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F0F2F3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kuzmina.cloud.controllers.CloudClientController">
-   <bottom>
-      <Pane prefHeight="27.0" prefWidth="600.0" style="-fx-background-color: #F0F2F3;" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="5.0" top="5.0"/>
-         </BorderPane.margin>
-         <GridPane alignment="BASELINE_CENTER" layoutX="1.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308"
-                   prefHeight="27.0" prefWidth="600.0" style="-fx-background-color: #F0F2F3;">
-            <columnConstraints>
-               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0"/>
-               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0"/>
-               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0"/>
-               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0"/>
-            </columnConstraints>
-            <rowConstraints>
-               <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
-            </rowConstraints>
-            <Button fx:id="move" layoutX="113.0" mnemonicParsing="false" onAction="#moveClicked" prefHeight="27.0"
-                    prefWidth="120.0" styleClass="buttons-style" stylesheets="@style.css" text="Переместить"
-                    textAlignment="CENTER" textFill="#4e74a1" GridPane.columnIndex="1"/>
-            <Button fx:id="copy" layoutX="9.0" mnemonicParsing="false" onAction="#copyClicked" prefHeight="27.0"
-                    prefWidth="120.0" stylesheets="@style.css" text="Копировать" textAlignment="CENTER"
-                    textFill="#f0f2f3" GridPane.valignment="CENTER">
-               <font>
-                  <Font name="Courier New" size="13.0"/>
-               </font>
-               <styleClass>
-                  <String fx:value="border-round"/>
-                  <String fx:value="buttons-style"/>
-               </styleClass>
-            </Button>
-            <Button fx:id="delete" layoutX="344.0" mnemonicParsing="false" onAction="#dropClicked" prefHeight="27.0"
-                    prefWidth="120.0" styleClass="buttons-style" stylesheets="@style.css" text="Удалить"
-                    textAlignment="CENTER" GridPane.columnIndex="3"/>
-            <Button fx:id="mkdir" layoutX="227.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0"
-                    styleClass="buttons-style" stylesheets="@style.css" text="Каталог" textAlignment="CENTER"
-                    GridPane.columnIndex="2"/>
-         </GridPane>
-      </Pane>
-   </bottom>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="632.0" style="-fx-background-color: #F0F2F3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.kuzmina.cloud.controllers.CloudClientController">
    <right>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="363.0" prefWidth="214.0" BorderPane.alignment="CENTER">
-         <ListView fx:id="serverFileView" layoutX="-39.0" layoutY="31.0" onMouseClicked="#onServerMouseClicked"
-                   prefHeight="333.0" prefWidth="139.0"
-                   style="-fx-background-color: #F0F2F3; -fx-border-color: #71B1C5;" AnchorPane.bottomAnchor="0.0"
-                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0"/>
-         <Label alignment="CENTER" contentDisplay="TOP" maxHeight="-Infinity" minHeight="30.0" prefHeight="30.0"
-                prefWidth="306.0" styleClass="labels-up" stylesheets="@style.css" text="Server:" textFill="#003366"
-                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <font>
-               <Font name="Courier New" size="16.0"/>
-            </font>
-         </Label>
-      </AnchorPane>
-   </right>
-   <center>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="serverListPane" minHeight="0.0" minWidth="0.0" prefHeight="363.0" prefWidth="220.0" BorderPane.alignment="CENTER">
          <children>
-            <ListView fx:id="clientFileView" layoutX="54.0" layoutY="30.0" onMouseClicked="#onClientMouseClicked" prefHeight="333.0" prefWidth="388.0" style="-fx-background-color: #F0F2F3; -fx-border-color: #71B1C5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
-               <contextMenu>
-                  <ContextMenu>
-                    <items>
-                      <MenuItem fx:id="mkdirMenu" mnemonicParsing="false" onAction="#onMkdir" text="Каталог" />
-                        <MenuItem fx:id="dropMenu" mnemonicParsing="false" onAction="#onDrop" text="Удалить" />
-                    </items>
-                  </ContextMenu>
-               </contextMenu>
-            </ListView>
-            <Label id="clientRootLabel" fx:id="clientRoot" contentDisplay="TOP" layoutX="-1.0" layoutY="6.0" maxHeight="-Infinity" minHeight="30.0" prefHeight="30.0" prefWidth="292.0" styleClass="labels-up" stylesheets="@style.css" text=" Client Root:" textFill="#003366" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <ListView fx:id="serverFileView" layoutX="-39.0" layoutY="31.0" prefHeight="333.0" prefWidth="139.0" style="-fx-background-color: #F0F2F3; -fx-border-color: #71B1C5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+            <Label alignment="CENTER" contentDisplay="TOP" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="214.0" stylesheets="@style.css" text="Server:" textFill="#003366" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font name="Courier New" size="16.0" />
                </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
+               <styleClass>
+                  <String fx:value="labels-round-right" />
+                  <String fx:value="label_normal_font" />
+                  <String fx:value="labels" />
+               </styleClass>
             </Label>
-            <Button layoutX="176.0" layoutY="2.0" mnemonicParsing="false" styleClass="transparent" stylesheets="@style.css" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="2.0">
-               <graphic>
-                  <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/free-icon-font-settings-3917035.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
          </children>
       </AnchorPane>
+   </right>
+   <center>
+      <HBox fx:id="clientListPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="393.0" BorderPane.alignment="CENTER">
+         <children>
+          <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0">
+               <children>
+                  <VBox alignment="TOP_RIGHT" prefHeight="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane prefHeight="49.0">
+                           <children>
+                              <Label id="clientRootLabel" fx:id="clientRoot" contentDisplay="TOP" layoutX="-10.0" layoutY="2.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="292.0" stylesheets="@style.css" text=" Client Root:" textFill="#003366" AnchorPane.leftAnchor="-0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="Courier New" size="16.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <styleClass>
+                                    <String fx:value="labels-round-left" />
+                                    <String fx:value="labels" />
+                                    <String fx:value="label_normal_font" />
+                                 </styleClass>
+                              </Label>
+                              <Button mnemonicParsing="false" styleClass="transparent" stylesheets="@style.css" />
+                              <ImageView fitHeight="17.0" fitWidth="63.0" layoutX="356.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="8.0">
+                                 <image>
+                                    <Image url="@img/free-icon-font-settings-3917035.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <Label fx:id="syncLabel" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" prefWidth="386.0" stylesheets="@style.css" text=" Файлы синхронизированы" VBox.vgrow="ALWAYS">
+                           <styleClass>
+                              <String fx:value="labels" />
+                              <String fx:value="label-small_font" />
+                           </styleClass>
+                        </Label>
+                        <ListView fx:id="clientFileView" onDragDropped="#onDragDropped" onDragOver="#onDragOver" onMouseClicked="#onClientMouseClicked" onMouseDragExited="#onDragExited" style="-fx-background-color: #F0F2F3; -fx-border-color: #71B1C5;">
+                           <contextMenu>
+                              <ContextMenu>
+                                <items>
+                                  <MenuItem fx:id="mkdirMenu" mnemonicParsing="false" onAction="#onMkdir" text="Каталог" />
+                                    <MenuItem fx:id="dropMenu" mnemonicParsing="false" onAction="#onDrop" text="Удалить" />
+                                </items>
+                              </ContextMenu>
+                           </contextMenu>
+                        </ListView>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <Button fx:id="expandServerList" alignment="CENTER" mnemonicParsing="false" onAction="#onCollapseExpandPress" prefHeight="400.0" prefWidth="18.0" styleClass="buttons-style" stylesheets="@style.css" text="&lt;" textAlignment="CENTER" />
+         </children>
+      </HBox>
    </center>
 </BorderPane>
