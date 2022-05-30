@@ -1,0 +1,16 @@
+
+.labels-up {
+    /*-fx-border-radius: 0px 20px 20px 0px;*/
+    -fx-background-radius: 10px 10px 0px 0px;
+    -fx-background-color: #71B1C5;
+}
+.buttons-style {
+    -fx-background-color: #71B1C5;
+    -fx-background-radius: 10px 10px 10px 10px;
+    -fx-font-family: "Courier New";
+    -fx-text-fill: #f0f2f3;
+    -fx-font-size: 13px;
+}
+.transparent {
+    -fx-background-color: rgba(0, 0, 0, 0);
+}

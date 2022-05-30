@@ -7,9 +7,17 @@ import java.nio.file.Path;
 public class FileMessage extends AbstractMessage{
     private final String name;
     private final byte[] bytes;
+    private final String filePath;
 
     public FileMessage(Path filePath) throws IOException {
         this.name = filePath.getFileName().toString();
+
+        if (!filePath.getParent().equals(filePath.getName(0))) {
+            this.filePath = filePath.getParent().toString()
+                    .substring(filePath.getName(0).toString().length() + 1);
+        } else {
+            this.filePath = null;
+        }
         bytes = Files.readAllBytes(filePath);
     }
 
@@ -24,5 +32,9 @@ public class FileMessage extends AbstractMessage{
 
     public byte[] getBytes() {
         return bytes;
+    }
+
+    public String getFilePath() {
+        return filePath;
     }
 }
