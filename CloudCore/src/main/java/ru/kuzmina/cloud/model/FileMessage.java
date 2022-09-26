@@ -9,16 +9,10 @@ public class FileMessage extends AbstractMessage{
     private final byte[] bytes;
     private final String filePath;
 
-    public FileMessage(Path filePath) throws IOException {
-        this.name = filePath.getFileName().toString();
-
-        if (!filePath.getParent().equals(filePath.getName(0))) {
-            this.filePath = filePath.getParent().toString()
-                    .substring(filePath.getName(0).toString().length() + 1);
-        } else {
-            this.filePath = null;
-        }
-        bytes = Files.readAllBytes(filePath);
+    public FileMessage(FileData fileData) throws IOException {
+        this.name = fileData.getFileName();
+        this.filePath = fileData.getParent();
+        bytes = Files.readAllBytes(Path.of(fileData.getFullName()));
     }
 
     @Override
@@ -37,4 +31,5 @@ public class FileMessage extends AbstractMessage{
     public String getFilePath() {
         return filePath;
     }
+
 }
